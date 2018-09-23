@@ -18,7 +18,7 @@ class Recipe(db.Model):
         return dict(id=self.id,
                     name=self.name,
                     created_at=self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                    ingredients=[ingredient.to_dict for ingredient in
+                    ingredients=[ingredient.to_dict() for ingredient in
                                  self.ingredients])
 
 

@@ -20,7 +20,7 @@ def recipes():
     elif request.method == 'POST':
         data = request.get_json()
         recipe = Recipe(name=data['name'])
-        ingredients = [Ingredient(name=i.name) for i in data['ingredients']]
+        ingredients = [Ingredient(name=i['name']) for i in data['ingredients']]
         recipe.ingredients = ingredients
         db.session.add(recipe)
         db.session.commit()
