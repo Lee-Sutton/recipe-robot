@@ -1,13 +1,13 @@
 """ORM Layer with model definitions"""
 
-import datetime
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
 
 class Recipe(db.Model):
-    __tablename__ = 'recipes'
+    __tablename__ = 'recipe'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
@@ -23,7 +23,7 @@ class Recipe(db.Model):
 
 
 class Ingredient(db.Model):
-    __tablename__ = 'ingredients'
+    __tablename__ = 'ingredient'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     amount = db.Column(db.Float)
