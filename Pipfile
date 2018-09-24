@@ -9,6 +9,7 @@ flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-script = "*"
 requests = "*"
+pytest = "*"
 
 [dev-packages]
 pylint = "*"
