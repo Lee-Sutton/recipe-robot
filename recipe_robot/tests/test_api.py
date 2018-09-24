@@ -1,4 +1,3 @@
-import os
 import pytest
 
 from recipe_robot.application import create_app
@@ -39,4 +38,3 @@ def init_database():
 def test_get_recipes(test_client, init_database):
     response = test_client.get('/api/recipes/')
     assert response.status_code == 200
-    print(response)
