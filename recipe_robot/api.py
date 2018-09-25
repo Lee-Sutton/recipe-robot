@@ -19,6 +19,7 @@ def recipes():
 
     elif request.method == 'POST':
         data = request.get_json()
+        print(data)
         recipe = Recipe(name=data['name'])
         ingredients = [Ingredient(name=i['name']) for i in data['ingredients']]
         recipe.ingredients = ingredients

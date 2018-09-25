@@ -1,4 +1,5 @@
 import pytest
+import json
 
 from recipe_robot.application import create_app
 from recipe_robot.models import db, Recipe
@@ -44,3 +45,11 @@ def test_ping(test_client):
 def test_get_recipes(test_client, init_database):
     response = test_client.get('/api/recipes/')
     assert response.status_code == 200
+
+
+def test_post_recipes(test_client, init_database):
+    data = {'name': 'Testing', 'ingredients': [{'name': 'Dummy Ingredient'}]}
+    response = test_client.post('/api/recipes/',
+                                data=json.dumps(data),
+                                content_type='application/json')
+    assert response.status_code == 201
