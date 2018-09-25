@@ -35,6 +35,12 @@ def init_database():
     db.drop_all()
 
 
+def test_ping(test_client):
+    response = test_client.get('/api/ping/')
+    assert response.status_code == 200
+    assert response.json == {'msg': 'pong'}
+
+
 def test_get_recipes(test_client, init_database):
     response = test_client.get('/api/recipes/')
     assert response.status_code == 200

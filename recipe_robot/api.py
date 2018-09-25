@@ -5,7 +5,7 @@ from recipe_robot.models import Recipe, Ingredient, db
 api = Blueprint('api', __name__)
 
 
-@api.route('/ping/')
+@api.route('/ping/', methods=['GET'])
 def ping():
     response = {'msg': 'pong'}
     return jsonify(response)
