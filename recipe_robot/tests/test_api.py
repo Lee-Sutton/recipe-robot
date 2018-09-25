@@ -53,3 +53,4 @@ def test_post_recipes(test_client, init_database):
                                 data=json.dumps(data),
                                 content_type='application/json')
     assert response.status_code == 201
+    assert False, 'Check Recipe saved in database'
