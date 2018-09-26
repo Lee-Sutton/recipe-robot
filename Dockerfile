@@ -10,7 +10,10 @@ RUN pip install pipenv
 
 # add app
 COPY . /usr/src/app
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+# Install dependencies
+RUN pipenv install --system
 
 # run server
-RUN pipenv install --system
-CMD python manage.py runserver -h 0.0.0.0
+CMD ["sh", "/usr/src/app/entrypoint.sh"]

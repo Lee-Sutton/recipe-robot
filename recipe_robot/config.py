@@ -1,12 +1,29 @@
 """
-config.py  
+config.py
 - settings for the flask application object
 """
+import os
 
 
-class BaseConfig(object):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
+class BaseConfig:
+    """Base configuration"""
+    TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # used for encryption and session management
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SECRET_KEY = 'secretkey'
+
+
+class DevelopmentConfig(BaseConfig):
+    """Development configuration"""
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
+
+class TestingConfig(BaseConfig):
+    """Testing configuration"""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_TEST_URL')
+
+
+class ProductionConfig(BaseConfig):
+    """Production configuration"""
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')

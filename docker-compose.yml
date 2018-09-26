@@ -4,12 +4,23 @@ services:
 
   web:
     build: .
-#      context: ./services/users
-#      dockerfile: Dockerfile
     volumes:
       - '.:/usr/src/app'
     ports:
       - "5000:5000"
-    # environment:
-    #   - FLASK_APP=project/__init__.py
-    #   - FLASK_ENV=development
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@recipes-db:5432/recipes_dev
+      - DATABASE_TEST_URL=postgres://postgres:postgres@recipes-db:5432/recipes_test
+    depends_on:
+      - recipes-db
+
+  recipes-db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
