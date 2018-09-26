@@ -18,14 +18,16 @@ def recipes():
         return jsonify({'recipes': [r.to_dict() for r in recipes]})
 
     elif request.method == 'POST':
-        data = request.get_json()
-        print(data)
-        recipe = Recipe(name=data['name'])
-        ingredients = [Ingredient(name=i['name']) for i in data['ingredients']]
-        recipe.ingredients = ingredients
-        db.session.add(recipe)
-        db.session.commit()
-        return jsonify(recipe.to_dict()), 201
+        try:
+            data = request.get_json()
+            recipe = Recipe(name=data['name'])
+            ingredients = [Ingredient(name=i['name']) for i in data['ingredients']]
+            recipe.ingredients = ingredients
+            db.session.add(recipe)
+            db.session.commit()
+            return jsonify(recipe.to_dict()), 201
+        except KeyError:
+            return 'invalid request', 400
 
 
 @api.route('/recipes/<int:id>/', methods=('GET', 'POST'))

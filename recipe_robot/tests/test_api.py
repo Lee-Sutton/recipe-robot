@@ -28,6 +28,15 @@ class TestRecipeApi(BaseTestCase):
                                         content_type='application/json')
             assert response.status_code == 201
 
+    def test_add_invalid_recipe(self):
+        """Ensure error is thrown if JSON object is empty"""
+        with self.client:
+            response = self.client.post('/api/recipes/',
+                                        data=json.dumps({}),
+                                        content_type='application/json')
+            assert response.status_code == 400
+            assert 'invalid request' in response.data.decode()
+
     def test_get_recipe(self):
         recipe = Recipe(id=1, name='test')
         db.session.add(recipe)
@@ -36,5 +45,4 @@ class TestRecipeApi(BaseTestCase):
             response = self.client.get('/api/recipes/1')
             assert response.status_code == 200
             data = json.loads(response.data.decode())
-            print(response.data.decode())
             assert data['name'] == 'test'
