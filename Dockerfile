@@ -13,7 +13,8 @@ COPY . /usr/src/app
 RUN chmod +x /usr/src/app/entrypoint.sh
 
 # Install dependencies
-RUN pipenv install --system
+RUN apk add --no-cache gcc musl-dev
+RUN pipenv install --system --dev
 
 # run server
 CMD ["sh", "/usr/src/app/entrypoint.sh"]
