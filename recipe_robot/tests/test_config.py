@@ -27,7 +27,6 @@ class TestTestingConfig(TestCase):
         assert self.app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///test.db'
 
 
-
 class TestProductionConfig(TestCase):
     def create_app(self):
         self.app = create_app(config='recipe_robot.config.ProductionConfig')
