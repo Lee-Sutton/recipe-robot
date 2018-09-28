@@ -38,11 +38,12 @@ class TestRecipeApi(BaseTestCase):
             assert 'invalid request' in response.data.decode()
 
     def test_get_recipe(self):
-        recipe = Recipe(id=1, name='test')
+        recipe = Recipe(name='test')
         db.session.add(recipe)
         db.session.commit()
         with self.client:
-            response = self.client.get('/api/recipes/1')
+            response = self.client.get(f'/api/recipes/{recipe.id}/')
             assert response.status_code == 200
             data = json.loads(response.data.decode())
             assert data['name'] == 'test'
+            assert type(data['created_at']) is str
