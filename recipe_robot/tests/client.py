@@ -1,3 +1,4 @@
+import os
 from flask_testing import TestCase
 
 from recipe_robot.application import create_app
@@ -6,7 +7,8 @@ from recipe_robot.models import db
 
 class BaseTestCase(TestCase):
     def create_app(self):
-        app = create_app(config='recipe_robot.config.TestingConfig')
+        os.environ['APP_SETTINGS'] = 'recipe_robot.config.TestingConfig'
+        app = create_app()
         return app
 
     def setUp(self):

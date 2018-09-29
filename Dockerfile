@@ -14,6 +14,8 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 
 # Install dependencies
 RUN apk add --no-cache gcc musl-dev
+RUN apk add --update make
+RUN make clean
 RUN pipenv install --system --dev
 
 # run server

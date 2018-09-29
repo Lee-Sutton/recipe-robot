@@ -6,7 +6,8 @@ import os
 
 class TestDevelopmentConfig(TestCase):
     def create_app(self):
-        self.app = create_app(config='recipe_robot.config.DevelopmentConfig')
+        os.environ['APP_SETTINGS'] = 'recipe_robot.config.DevelopmentConfig'
+        self.app = create_app()
         return self.app
 
     def test_app_in_development_mode(self):
@@ -18,7 +19,8 @@ class TestDevelopmentConfig(TestCase):
 
 class TestTestingConfig(TestCase):
     def create_app(self):
-        self.app = create_app(config='recipe_robot.config.TestingConfig')
+        os.environ['APP_SETTINGS'] = 'recipe_robot.config.TestingConfig'
+        self.app = create_app()
         return self.app
 
     def test_app_in_test_mode(self):
@@ -30,7 +32,8 @@ class TestTestingConfig(TestCase):
 
 class TestProductionConfig(TestCase):
     def create_app(self):
-        self.app = create_app(config='recipe_robot.config.ProductionConfig')
+        os.environ['APP_SETTINGS'] = 'recipe_robot.config.ProductionConfig'
+        self.app = create_app()
         return self.app
 
     def test_app_in_production_mode(self):
