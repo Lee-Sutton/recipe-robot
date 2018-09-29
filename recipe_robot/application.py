@@ -1,7 +1,8 @@
 from flask import Flask
 
 
-def create_app(app_name='RECIPE_ROBOT', config='recipe_robot.config.BaseConfig'):
+def create_app(app_name='RECIPE_ROBOT',
+               config='recipe_robot.config.BaseConfig'):
     app = Flask(app_name)
     app.config.from_object(config)
 

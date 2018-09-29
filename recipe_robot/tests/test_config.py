@@ -24,7 +24,8 @@ class TestTestingConfig(TestCase):
     def test_app_in_test_mode(self):
         assert self.app.config['SECRET_KEY'] == 'secretkey'
         assert current_app is not None
-        assert self.app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///test.db'
+        assert (self.app.config['SQLALCHEMY_DATABASE_URI'] ==
+                'sqlite:///test.db')
 
 
 class TestProductionConfig(TestCase):
