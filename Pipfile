@@ -11,6 +11,7 @@ flask-script = "*"
 requests = "*"
 pytest = "*"
 pytest-cov = "*"
+gunicorn = "*"
 
 [dev-packages]
 "pep8" = "*"
