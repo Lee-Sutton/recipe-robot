@@ -1,42 +1,49 @@
-import os
-import pytest
+import json
 
-from recipe_robot.application import create_app
-from recipe_robot.models import db, Recipe
-
-
-@pytest.fixture(scope='module')
-def test_client():
-    flask_app = create_app()
-    testing_client = flask_app.test_client()
-
-    # Establish an application context before running the tests.
-    ctx = flask_app.app_context()
-    ctx.push()
-
-    yield testing_client  # this is where the testing happens!
-
-    ctx.pop()
+from recipe_robot.models import Recipe, db
+from recipe_robot.tests.client import BaseTestCase
 
 
-@pytest.fixture(scope='module')
-def init_database():
-    # Create the database and the database table
-    db.create_all()
-
-    # Insert user data
-    recipe1 = Recipe(name='Dummy Recipe')
-    db.session.add(recipe1)
-
-    # Commit the changes for the users
-    db.session.commit()
-
-    yield db  # this is where the testing happens!
-
-    db.drop_all()
+class TestPing(BaseTestCase):
+    def test_ping(self):
+        response = self.client.get('/api/ping/')
+        assert response.status_code == 200
+        assert response.json == {'msg': 'pong'}
 
 
-def test_get_recipes(test_client, init_database):
-    response = test_client.get('/api/recipes/')
-    assert response.status_code == 200
-    print(response)
+class TestRecipeApi(BaseTestCase):
+    """Recipe rest routes"""
+
+    def test_get_recipes(self):
+        with self.client:
+            response = self.client.get('/api/recipes/')
+            assert response.status_code == 200
+
+    def test_post_recipes(self):
+        with self.client:
+            data = {'name': 'Testing',
+                    'ingredients': [{'name': 'Dummy Ingredient'}]}
+            response = self.client.post('/api/recipes/',
+                                        data=json.dumps(data),
+                                        content_type='application/json')
+            assert response.status_code == 201
+
+    def test_add_invalid_recipe(self):
+        """Ensure error is thrown if JSON object is empty"""
+        with self.client:
+            response = self.client.post('/api/recipes/',
+                                        data=json.dumps({}),
+                                        content_type='application/json')
+            assert response.status_code == 400
+            assert 'invalid request' in response.data.decode()
+
+    def test_get_recipe(self):
+        recipe = Recipe(name='test')
+        db.session.add(recipe)
+        db.session.commit()
+        with self.client:
+            response = self.client.get(f'/api/recipes/{recipe.id}/')
+            assert response.status_code == 200
+            data = json.loads(response.data.decode())
+            assert data['name'] == 'test'
+            assert type(data['created_at']) is str

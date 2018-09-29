@@ -1,4 +1,5 @@
 # recipe-robot
+[![Build Status](https://travis-ci.org/lee-sutton/recipe-robot.svg?branch=master)](https://travis-ci.org/lee-sutton/recipe-robot)
 
 ## Project setup
 ```

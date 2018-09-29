@@ -10,12 +10,15 @@ flask-migrate = "*"
 flask-script = "*"
 requests = "*"
 pytest = "*"
+pytest-cov = "*"
+gunicorn = "*"
 
 [dev-packages]
-pylint = "*"
 "pep8" = "*"
 "flake8" = "*"
 yapf = "*"
+flask-testing = "*"
+pyflakes = "*"
 
 [requires]
 python_version = "3.6"
