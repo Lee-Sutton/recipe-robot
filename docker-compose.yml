@@ -9,6 +9,8 @@ services:
     ports:
       - "5000:5000"
     environment:
+      - FLASK_ENV=development
+      - APP_SETTINGS=recipe_robot.config.DevelopmentConfig
       - DATABASE_URL=postgres://postgres:postgres@recipes-db:5432/recipes_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@recipes-db:5432/recipes_test
     depends_on:
