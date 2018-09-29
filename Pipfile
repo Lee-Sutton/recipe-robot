@@ -13,11 +13,11 @@ pytest = "*"
 pytest-cov = "*"
 
 [dev-packages]
-pylint = "*"
 "pep8" = "*"
 "flake8" = "*"
 yapf = "*"
 flask-testing = "*"
+pyflakes = "*"
 
 [requires]
 python_version = "3.6"
