@@ -4,7 +4,7 @@ services:
 
   web:
     build:
-      context: .
+      context: ./services/api
       dockerfile: Dockerfile-prod
     ports:
       - "5000:5000"
