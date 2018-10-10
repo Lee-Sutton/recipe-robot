@@ -42,6 +42,6 @@ def test_get_recipe(client):
     with client:
         response = client.get(f'/api/recipes/{recipe.id}/')
         assert response.status_code == 200
-        data = json.loads(response.data.decode())
+        data = response.json
         assert data['name'] == 'test'
         assert type(data['created_at']) is str
