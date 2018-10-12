@@ -2,6 +2,8 @@
 config.py
 - settings for the flask application object
 """
+# pylint: disable=R0903
+
 import os
 
 

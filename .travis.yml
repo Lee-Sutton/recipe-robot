@@ -16,8 +16,8 @@ before_script:
   - docker-compose up --build -d
 
 script:
-  - docker-compose run web pytest
-  - docker-compose run web flake8 recipe_robot
+  - docker-compose run web make test
+  - docker-compose run web make lint
 
 after_script:
   - docker-compose down

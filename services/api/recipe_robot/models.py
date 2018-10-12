@@ -1,4 +1,5 @@
 """ORM Layer with model definitions"""
+# pylint: disable=R0903
 
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy

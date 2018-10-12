@@ -1,6 +1,6 @@
-from recipe_robot.application import create_app
-from flask import current_app
 import os
+from flask import current_app
+from recipe_robot.application import create_app
 
 
 def test_development_config():

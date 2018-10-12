@@ -44,4 +44,4 @@ def test_get_recipe(client):
         assert response.status_code == 200
         data = response.json
         assert data['name'] == 'test'
-        assert type(data['created_at']) is str
+        assert isinstance(data['created_at'], str)
