@@ -19,6 +19,7 @@ gunicorn = "*"
 yapf = "*"
 flask-testing = "*"
 pyflakes = "*"
+flask-debugtoolbar = "*"
 
 [requires]
 python_version = "3.6"

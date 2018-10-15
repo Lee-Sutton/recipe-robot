@@ -8,6 +8,7 @@ def test_development_config():
     app = create_app()
     assert app.config['SECRET_KEY'] == 'secretkey'
     assert current_app is not None
+    assert app.config['DEBUG_TB_ENABLED']
     assert (app.config['SQLALCHEMY_DATABASE_URI'] ==
             os.environ.get('DATABASE_URL'))
 
@@ -26,5 +27,7 @@ def test_production_config():
     app = create_app()
     assert app.config['SECRET_KEY'] == 'secretkey'
     assert current_app is not None
+    assert not app.config['DEBUG_TB_ENABLED']
+    assert not app.config['DEBUG_TB_INTERCEPT_REDIRECTS']
     assert (app.config['SQLALCHEMY_DATABASE_URI'] ==
             os.environ.get('DATABASE_URL'))
