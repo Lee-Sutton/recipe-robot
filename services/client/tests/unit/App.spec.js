@@ -1,8 +1,11 @@
-import { mount } from '@vue/test-utils';
+import { mount, RouterLinkStub } from '@vue/test-utils';
 import App from '@/App.vue';
 
-describe('Welcome.vue', () => {
-    it('renders props.msg when passed', () => {
-        expect(true).toBe(true);
+describe('App.vue', () => {
+    it('Renders the welcome message', () => {
+        const wrapper = mount(App, {
+            stubs: { RouterLink: RouterLinkStub },
+        });
+        expect(wrapper.text()).toContain('Welcome');
     });
 });
