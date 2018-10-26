@@ -1,5 +1,11 @@
 module.exports = {
-  env: {
-    jest: true,
-  },
+    env: {
+        jest: true,
+    },
+    rules: {
+        indent: [
+            'error',
+            4,
+        ],
+    },
 };
