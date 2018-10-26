@@ -1,9 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
-import Welcome from '@/components/Welcome.vue';
+import Home from '@/views/Home.vue';
 
-describe('Welcome.vue', () => {
+describe('Home.vue', () => {
     it('renders the welcome message', () => {
-        const wrapper = shallowMount(Welcome);
+        const wrapper = shallowMount(Home);
         expect(wrapper.text()).toContain('Welcome to recipe buddy');
     });
 });

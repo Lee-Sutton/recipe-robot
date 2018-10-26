@@ -2,10 +2,17 @@ import { mount, RouterLinkStub } from '@vue/test-utils';
 import App from '@/App.vue';
 
 describe('App.vue', () => {
-    it('Renders the welcome message', () => {
-        const wrapper = mount(App, {
-            stubs: { RouterLink: RouterLinkStub },
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = mount(App, {
+            stubs: {
+                RouterLink: RouterLinkStub,
+            },
         });
-        expect(wrapper.text()).toContain('Welcome');
+    });
+
+    it('should render the navbar for the user', () => {
+        expect(wrapper.find('nav').text()).toContain('Recipe Robot');
     });
 });

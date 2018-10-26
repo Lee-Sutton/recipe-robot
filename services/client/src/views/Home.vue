@@ -1,7 +1,12 @@
 <template>
-  <div class="home">
-    <h1>Welcome to recipe robot!</h1>
-  </div>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="text-center">
+                <h1>Welcome to recipe buddy!</h1>
+                <p>Create an account or login to get started</p>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
