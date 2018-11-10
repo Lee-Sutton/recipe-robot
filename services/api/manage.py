@@ -1,25 +1,15 @@
-"""CLI for interacting with and setting up the server"""
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-
-from recipe_robot.application import create_app
-from recipe_robot.models import db, Recipe, Ingredient
-
-app = create_app()
-migrate = Migrate(app, db)
-manager = Manager(app)
-
-# Migration utility command
-manager.add_command('db', MigrateCommand)
-
-
-@manager.shell
-def shell_ctx():
-    return dict(app=app,
-                db=db,
-                Recipe=Recipe,
-                Ingredient=Ingredient)
-
+#!/usr/bin/env python
+import os
+import sys
 
 if __name__ == '__main__':
-    manager.run()
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)

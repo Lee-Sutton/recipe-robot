@@ -4,16 +4,22 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-script = "*"
+requests = "*"
+pytest = "*"
 pytest-cov = "*"
 gunicorn = "*"
-django = "*"
 
 [dev-packages]
-pytest = "*"
 "pep8" = "*"
 "flake8" = "*"
 yapf = "*"
+flask-testing = "*"
 pyflakes = "*"
+flask-debugtoolbar = "*"
 
 [requires]
 python_version = "3.6"
