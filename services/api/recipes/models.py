@@ -1,3 +1,10 @@
+"""
+Recipe App Models
+=================
+
+- This module defines the models used the recipes app.
+- Corresponding tests can be found in test_models.py
+"""
 from django.db import models
 
 
