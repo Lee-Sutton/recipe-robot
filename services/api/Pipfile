@@ -7,6 +7,7 @@ name = "pypi"
 pytest-cov = "*"
 gunicorn = "*"
 django = "*"
+djangorestframework = "*"
 
 [dev-packages]
 pytest = "*"
