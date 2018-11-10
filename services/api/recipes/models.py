@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class Recipes(models.Model):
+    """Recipes model"""
+    name = models.CharField(max_length=255)
+    amount = models.FloatField()
