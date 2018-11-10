@@ -1,5 +1,6 @@
+"""recipes models test suite"""
 from django.test import TestCase
-from .models import Recipes
+from recipes.models import Recipes
 
 
 class TestRecipes(TestCase):
@@ -8,4 +9,4 @@ class TestRecipes(TestCase):
         """it should insert into the database"""
         recipe = Recipes(name='test', amount=1)
         recipe.save()
-        self.assertGreater(Recipes.objects.filter(name='test').count(), 0)
+        assert Recipes.objects.filter(name='test').count() == 1
