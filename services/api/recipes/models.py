@@ -8,7 +8,13 @@ Recipe App Models
 from django.db import models
 
 
-class Recipes(models.Model):
-    """Recipes model"""
+class Recipe(models.Model):
+    """Recipe model"""
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+
+class Ingredient(models.Model):
+    """Ingredients model"""
     name = models.CharField(max_length=255)
     amount = models.FloatField()
