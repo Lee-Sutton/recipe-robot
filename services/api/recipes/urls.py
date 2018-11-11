@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import ListRecipe, DetailRecipe
 
 urlpatterns = [
     path('', ListRecipe.as_view()),
     path('<int:pk>/', DetailRecipe.as_view()),
+    path('rest-auth/', include('rest_auth.urls')),
 ]
