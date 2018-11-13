@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 def create_user(username, email, password):
+    """Creates a user for testing purposes"""
     user = User(username=username, email=email)
     user.set_password(password)
     user.save()
