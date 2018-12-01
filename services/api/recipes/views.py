@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from rest_framework import generics, permissions
-from .models import Recipe, Ingredient
-from .serializers import IngredientSerializer, RecipeSerializer
+from .models import Recipe
+from .serializers import RecipeSerializer
 
 
 class ListRecipe(generics.ListCreateAPIView):
