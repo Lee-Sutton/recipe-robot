@@ -9,6 +9,7 @@ gunicorn = "*"
 django = "*"
 djangorestframework = "*"
 django-rest-auth = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 pytest = "*"
