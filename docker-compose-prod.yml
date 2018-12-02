@@ -1,37 +1,42 @@
 version: '3.6'
 
 services:
-
   web:
     build:
       context: ./services/api
       dockerfile: Dockerfile-prod
-    ports:
-      - "5000:5000"
+#    volumes:
+#    - '.:/usr/src/app'
+    expose:
+    - 8000
     environment:
-      - FLASK_ENV=production
-      - APP_SETTINGS=recipe_robot.config.ProductionConfig
-      - DATABASE_URL=postgres://postgres:postgres@recipes-db:5432/recipes_dev
-      - DATABASE_TEST_URL=postgres://postgres:postgres@recipes-db:5432/recipes_test
+    - SECRET_KEY=please_change_me
+    - SQL_ENGINE=django.db.backends.postgresql
+    - SQL_DATABASE=postgres
+    - SQL_USER=postgres
+    - SQL_PASSWORD=postgres
+    - SQL_HOST=db
+    - SQL_PORT=5432
     depends_on:
-      - recipes-db
+    - db
 
-  recipes-db:
-    build:
-      context: ./db
-      dockerfile: Dockerfile
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+  db:
+    image: postgres:10.1-alpine
+#    volumes:
+#    - postgres_data:/var/lib/postgresql/data/
 
   nginx:
     build:
-      context: ./nginx
+      context: ./services/nginx
       dockerfile: Dockerfile-prod
+#    volumes:
+#      - ./nginx/conf.d:/etc/nginx/conf.d
     restart: always
     ports:
-      - 80:80
+    - 80:80
     depends_on:
-      - web
+    - web
+
+#volumes:
+#  postgres_data:
+
