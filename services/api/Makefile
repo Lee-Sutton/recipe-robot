@@ -9,3 +9,7 @@ clean-pytest:
 
 lint:
 	flake8 recipe_robot && flake8 manage.py
+
+test: clean-pytest
+	pipenv run pytest
+
