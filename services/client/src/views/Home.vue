@@ -1,12 +1,12 @@
 <template>
-    <div class="container">
-        <div class="jumbotron">
-            <div class="text-center">
-                <h1>Welcome to recipe buddy!</h1>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">Welcome to recipe buddy!</h1>
                 <p>Create an account or login to get started</p>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

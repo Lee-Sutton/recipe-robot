@@ -1,6 +1,6 @@
 describe('App layout specs', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:8080');
+        cy.visit('/');
     });
 
     it('Should welcome the user', () => {
