@@ -13,6 +13,7 @@ describe('App.vue', () => {
     });
 
     it('should render the navbar for the user', () => {
-        expect(wrapper.find('nav').text()).toContain('Recipe Robot');
+        expect(wrapper.find('nav').text()).toContain('Home');
+        expect(wrapper.find('nav').text()).toContain('About');
     });
 });

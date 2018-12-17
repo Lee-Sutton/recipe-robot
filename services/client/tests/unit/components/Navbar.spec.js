@@ -2,11 +2,24 @@ import { shallowMount, RouterLinkStub } from '@vue/test-utils';
 import Navbar from '@/components/Navbar.vue';
 
 describe('Navbar.vue', () => {
-    it('Renders the navigation bar for the user', () => {
-        const wrapper = shallowMount(Navbar, {
+    let wrapper = null;
+
+    beforeEach(() => {
+        wrapper = shallowMount(Navbar, {
             stubs: { RouterLink: RouterLinkStub },
         });
-        expect(wrapper.text()).toContain('Recipe Robot');
+    });
+    it('Renders the navigation bar for the user', () => {
+        expect(wrapper.text()).toContain('Home');
         expect(wrapper.text()).toContain('About');
+    });
+
+    it('should link to the signup and login pages', function () {
+        const routerStubs = wrapper.findAll(RouterLinkStub);
+        // FIXME better selectors
+        expect(routerStubs.at(0).props().to).toEqual({name: 'home'});
+        expect(routerStubs.at(2).props().to).toEqual({name: 'about'});
+        expect(routerStubs.at(3).props().to).toEqual({name: 'signup'});
+        expect(routerStubs.at(4).props().to).toEqual({name: 'login'});
     });
 });

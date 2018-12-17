@@ -15,12 +15,12 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <router-link class="button is-primary" :to="{name: 'signup'}">
                             <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                            Log in
-                        </a>
+                        </router-link>
+                        <router-link class="button is-light" :to="{name: 'login'}">
+                            Login
+                        </router-link>
                     </div>
                 </div>
             </div>
