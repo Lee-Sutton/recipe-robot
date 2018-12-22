@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: |
-    docker-compose up
+    docker-compose up --build -d
     docker-compose run web pytest
     docker-compose down
     
