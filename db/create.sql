@@ -1,4 +1,0 @@
-CREATE DATABASE production;
-CREATE DATABASE dev;
-CREATE DATABASE test;
-
