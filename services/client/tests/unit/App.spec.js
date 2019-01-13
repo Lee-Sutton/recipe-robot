@@ -1,4 +1,4 @@
-import { mount, RouterLinkStub } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import App from '@/App.vue';
 
 describe('App.vue', () => {
@@ -6,9 +6,7 @@ describe('App.vue', () => {
 
     beforeEach(() => {
         wrapper = mount(App, {
-            stubs: {
-                RouterLink: RouterLinkStub,
-            },
+            stubs: ['router-link', 'router-view'],
         });
     });
 
