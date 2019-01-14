@@ -14,6 +14,14 @@
                     <input class="input" type="password" placeholder="Password" data-cy="password">
                 </div>
             </div>
+
+            <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                    <input class="input" type="password" placeholder="Password"
+                           data-cy="password-confirm">
+                </div>
+            </div>
         </form>
     </div>
 </template>

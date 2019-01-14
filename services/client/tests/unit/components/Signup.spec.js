@@ -17,7 +17,7 @@ describe('App.vue', () => {
 
         wrapper.find('[data-cy=email]').setValue(user.email);
         wrapper.find('[data-cy=password]').setValue(user.password);
-        // wrapper.find('password-confirm').setValue(user.password);
+        wrapper.find('[data-cy=password-confirm]').setValue(user.password);
         wrapper.find('form').trigger('submit');
     });
 });
