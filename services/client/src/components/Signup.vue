@@ -27,14 +27,13 @@
 </template>
 
 <script>
-import User from '../api/users';
+import { signup } from '../api/users';
 
 export default {
     name: 'Signup',
     methods: {
         handleSubmit() {
-            console.log('handle submit called')
-            new User();
+            signup();
         },
     },
 };

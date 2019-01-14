@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { shallowMount } from '@vue/test-utils';
 import Signup from '../../../src/components/Signup.vue';
-import User from '../../../src/api/users';
+import { signup } from '../../../src/api/users';
 
 jest.mock('../../../src/api/users.js');
 
@@ -10,7 +10,7 @@ describe('Signup test suite', () => {
 
     beforeEach(() => {
         wrapper = shallowMount(Signup);
-        User.mockClear();
+        jest.resetAllMocks();
     });
 
     it('should allow the user to signup', () => {
@@ -23,6 +23,6 @@ describe('Signup test suite', () => {
         wrapper.find('[data-cy=password]').setValue(user.password);
         wrapper.find('[data-cy=password-confirm]').setValue(user.password);
         wrapper.find('form').trigger('submit');
-        expect(User).toHaveBeenCalled();
+        expect(signup).toHaveBeenCalledWith();
     });
 });
