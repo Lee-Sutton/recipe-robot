@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form>
+        <form @submit.prevent="handleSubmit">
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
@@ -27,8 +27,16 @@
 </template>
 
 <script>
+import User from '../api/users';
+
 export default {
     name: 'Signup',
+    methods: {
+        handleSubmit() {
+            console.log('handle submit called')
+            new User();
+        },
+    },
 };
 </script>
 

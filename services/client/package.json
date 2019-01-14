@@ -29,6 +29,7 @@
     "faker": "^4.1.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "testdouble": "^3.9.2",
     "vue-template-compiler": "^2.5.17"
   }
 }

@@ -1,15 +1,19 @@
 import faker from 'faker';
 import { shallowMount } from '@vue/test-utils';
 import Signup from '../../../src/components/Signup.vue';
+import User from '../../../src/api/users';
 
-describe('App.vue', () => {
+jest.mock('../../../src/api/users.js');
+
+describe('Signup test suite', () => {
     let wrapper;
 
     beforeEach(() => {
         wrapper = shallowMount(Signup);
+        User.mockClear();
     });
 
-    it('should render a login form', () => {
+    it('should allow the user to signup', () => {
         const user = {
             email: faker.internet.email(),
             password: faker.internet.password(),
@@ -19,5 +23,6 @@ describe('App.vue', () => {
         wrapper.find('[data-cy=password]').setValue(user.password);
         wrapper.find('[data-cy=password-confirm]').setValue(user.password);
         wrapper.find('form').trigger('submit');
+        expect(User).toHaveBeenCalled();
     });
 });
