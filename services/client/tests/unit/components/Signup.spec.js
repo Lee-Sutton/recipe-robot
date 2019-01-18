@@ -23,6 +23,10 @@ describe('Signup test suite', () => {
         wrapper.find('[data-cy=password]').setValue(user.password);
         wrapper.find('[data-cy=password-confirm]').setValue(user.password);
         wrapper.find('form').trigger('submit');
-        expect(signup).toHaveBeenCalledWith();
+        expect(signup).toHaveBeenCalledWith({
+            email: user.email,
+            password: user.password,
+            passwordConfirm: user.password,
+        });
     });
 });

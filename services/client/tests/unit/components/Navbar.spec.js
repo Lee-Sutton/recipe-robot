@@ -14,9 +14,8 @@ describe('Navbar.vue', () => {
         expect(wrapper.text()).toContain('About');
     });
 
-    it('should link to the signup and login pages', function () {
+    it('should link to the signup and login pages', () => {
         const routerStubs = wrapper.findAll(RouterLinkStub);
-        // FIXME better selectors
         expect(routerStubs.at(0).props().to).toEqual({name: 'home'});
         expect(routerStubs.at(2).props().to).toEqual({name: 'about'});
         expect(routerStubs.at(3).props().to).toEqual({name: 'signup'});

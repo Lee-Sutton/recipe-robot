@@ -4,14 +4,16 @@
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="Email" data-cy="email">
+                    <input class="input" type="text" placeholder="Email" v-model="email"
+                           data-cy="email">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" type="password" placeholder="Password" data-cy="password">
+                    <input class="input" type="password" placeholder="Password" v-model="password"
+                           data-cy="password">
                 </div>
             </div>
 
@@ -19,7 +21,7 @@
                 <label class="label">Confirm Password</label>
                 <div class="control">
                     <input class="input" type="password" placeholder="Password"
-                           data-cy="password-confirm">
+                           v-model="passwordConfirm" data-cy="password-confirm">
                 </div>
             </div>
         </form>
@@ -31,9 +33,20 @@ import { signup } from '../api/users';
 
 export default {
     name: 'Signup',
+    data() {
+        return {
+            email: null,
+            password: null,
+            passwordConfirm: null,
+        };
+    },
     methods: {
         handleSubmit() {
-            signup();
+            signup({
+                email: this.email,
+                password: this.password,
+                passwordConfirm: this.passwordConfirm,
+            });
         },
     },
 };
