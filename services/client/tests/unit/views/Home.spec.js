@@ -15,6 +15,8 @@ describe('Home.vue', () => {
     });
 
     it('should link the user to the create an account page', () => {
-        const routerStub = wrapper.findAll(RouterLinkStub);
+        const routerStubs = wrapper.findAll(RouterLinkStub);
+        expect(routerStubs.at(0).props().to).toEqual({name: 'signup'});
+        expect(routerStubs.at(1).props().to).toEqual({name: 'login'});
     });
 });

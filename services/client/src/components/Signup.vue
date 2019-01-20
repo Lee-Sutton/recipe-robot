@@ -1,31 +1,33 @@
 <template>
-    <div>
-        <form @submit.prevent="handleSubmit">
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control">
-                    <input class="input" type="text" placeholder="Email" v-model="email"
-                           data-cy="email">
+    <section class="section is-small">
+        <div class="container">
+            <form @submit.prevent="handleSubmit">
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Email" v-model="email"
+                               data-cy="email">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label class="label">Password</label>
-                <div class="control">
-                    <input class="input" type="password" placeholder="Password" v-model="password"
-                           data-cy="password">
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="Password" v-model="password"
+                               data-cy="password">
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <label class="label">Confirm Password</label>
-                <div class="control">
-                    <input class="input" type="password" placeholder="Password"
-                           v-model="passwordConfirm" data-cy="password-confirm">
+                <div class="field">
+                    <label class="label">Confirm Password</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="Password"
+                               v-model="passwordConfirm" data-cy="password-confirm">
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
+    </section>
 </template>
 
 <script>
