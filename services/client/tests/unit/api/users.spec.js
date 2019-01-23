@@ -13,5 +13,5 @@ afterEach(() => {
 
 test('it should send a post request with the user data', () => {
     signup(user);
-    expect(mockAxios.post).toHaveBeenCalledWith(`${HOST_URL}/api/v1/rest-auth/registration/`);
+    expect(mockAxios.post).toHaveBeenCalledWith(`${HOST_URL}/api/v1/rest-auth/registration/`, user);
 });
