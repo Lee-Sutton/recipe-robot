@@ -41,9 +41,17 @@ class TestRestAuthViews(APITestCase):
             'password': 'secret'
         }
 
+    def tearDown(self):
+        User.objects.all().delete()
+
     def test_login(self):
         """It should allow the user to signup"""
         create_user(**self.user)
         response = self.client.post('/api/v1/rest-auth/login/', format='json',
+                                    data=self.user)
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_signup(self):
+        response = self.client.post('/api/v1/rest-auth/signup/', format='json',
                                     data=self.user)
         assert response.status_code == status.HTTP_200_OK
