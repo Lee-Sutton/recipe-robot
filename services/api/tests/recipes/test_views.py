@@ -1,6 +1,6 @@
 """recipes views test suite"""
 from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
+from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
 
 
@@ -29,3 +29,21 @@ class TestRecipeViews(APITestCase):
         """
         response = self.client.get('/api/v1/', format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+
+class TestRestAuthViews(APITestCase):
+    """Auth end points"""
+
+    def setUp(self):
+        self.user = {
+            'username': 'lee',
+            'email': 'lee@e.com',
+            'password': 'secret'
+        }
+
+    def test_login(self):
+        """It should allow the user to signup"""
+        create_user(**self.user)
+        response = self.client.post('/api/v1/rest-auth/login/', format='json',
+                                    data=self.user)
+        assert response.status_code == status.HTTP_200_OK
