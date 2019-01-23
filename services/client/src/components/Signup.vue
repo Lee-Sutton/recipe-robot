@@ -3,6 +3,14 @@
         <div class="container">
             <form @submit.prevent="handleSubmit">
                 <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Username" v-model="username"
+                               data-cy="username">
+                    </div>
+                </div>
+
+                <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
                         <input class="input" type="text" placeholder="Email" v-model="email"
@@ -13,8 +21,8 @@
                 <div class="field">
                     <label class="label">Password</label>
                     <div class="control">
-                        <input class="input" type="password" placeholder="Password" v-model="password"
-                               data-cy="password">
+                        <input class="input" type="password" placeholder="Password" v-model="password1"
+                               data-cy="password1">
                     </div>
                 </div>
 
@@ -22,7 +30,7 @@
                     <label class="label">Confirm Password</label>
                     <div class="control">
                         <input class="input" type="password" placeholder="Password"
-                               v-model="passwordConfirm" data-cy="password-confirm">
+                               v-model="password2" data-cy="password2">
                     </div>
                 </div>
             </form>
@@ -37,17 +45,19 @@ export default {
     name: 'Signup',
     data() {
         return {
+            username: null,
             email: null,
             password: null,
-            passwordConfirm: null,
+            password2: null,
         };
     },
     methods: {
         handleSubmit() {
             signup({
+                username: this.username,
                 email: this.email,
-                password: this.password,
-                passwordConfirm: this.passwordConfirm,
+                password1: this.password1,
+                password2: this.password2,
             });
         },
     },

@@ -15,18 +15,21 @@ describe('Signup test suite', () => {
 
     it('should allow the user to signup', () => {
         const user = {
+            username: faker.internet.userName(),
             email: faker.internet.email(),
             password: faker.internet.password(),
         };
 
+        wrapper.find('[data-cy=username]').setValue(user.username);
         wrapper.find('[data-cy=email]').setValue(user.email);
-        wrapper.find('[data-cy=password]').setValue(user.password);
-        wrapper.find('[data-cy=password-confirm]').setValue(user.password);
+        wrapper.find('[data-cy=password1]').setValue(user.password);
+        wrapper.find('[data-cy=password2]').setValue(user.password);
         wrapper.find('form').trigger('submit');
         expect(signup).toHaveBeenCalledWith({
+            username: user.username,
             email: user.email,
-            password: user.password,
-            passwordConfirm: user.password,
+            password1: user.password,
+            password2: user.password,
         });
     });
 });
