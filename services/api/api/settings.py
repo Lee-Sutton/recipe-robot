@@ -25,7 +25,6 @@ SECRET_KEY = 'e@1f#eqr-bh$ge+zp#w%dc8*t-gu^uoq0*@uc0ag3vd@1)+zh7'
 DEBUG = os.getenv('DEBUG', True)
 
 ALLOWED_HOSTS = [
-    '104.42.40.46',
     'localhost',
 ]
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party apps
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -63,7 +63,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 3rd party apps
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    'localhost:8080',
+)
 
 ROOT_URLCONF = 'api.urls'
 

@@ -33,6 +33,11 @@
                                v-model="password2" data-cy="password2">
                     </div>
                 </div>
+
+                <div class="field">
+                    <button class="is-primary" @submit.prevent="handleSubmit">Submit</button>
+                </div>
+
             </form>
         </div>
     </section>
@@ -47,7 +52,7 @@ export default {
         return {
             username: null,
             email: null,
-            password: null,
+            password1: null,
             password2: null,
         };
     },

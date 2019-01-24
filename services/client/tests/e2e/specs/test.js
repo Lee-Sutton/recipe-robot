@@ -4,6 +4,11 @@ describe('App layout specs', () => {
     });
 
     it('Should allow users to signup', () => {
+        const user = {
+            username: 'leeSutton',
+            email: 'lee@e.com',
+            password: '@password123',
+        };
         // The user navigates to the website and is welcomed
         cy.contains('h1', 'Welcome');
 
@@ -11,10 +16,10 @@ describe('App layout specs', () => {
         cy.contains('Create an account').click();
 
         // They fill in their account information
-        cy.get('[data-cy=username]').type('leeSutton');
-        cy.get('[data-cy=email]').type('leesutton1@gmail.com');
-        cy.get('[data-cy=password1]').type('password');
-        cy.get('[data-cy=password2]').type('password');
+        cy.get('[data-cy=username]').type(user.username);
+        cy.get('[data-cy=email]').type(user.email);
+        cy.get('[data-cy=password1]').type(user.password);
+        cy.get('[data-cy=password2]').type(user.password);
         cy.get('form').submit();
     });
 });
