@@ -21,5 +21,8 @@ describe('App layout specs', () => {
         cy.get('[data-cy=password1]').type(user.password);
         cy.get('[data-cy=password2]').type(user.password);
         cy.get('form').submit();
+
+        // The user is redirected to their home page
+        cy.contains(`Welcome ${user.username}`)
     });
 });

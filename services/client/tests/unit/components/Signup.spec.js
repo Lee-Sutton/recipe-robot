@@ -1,6 +1,7 @@
 import faker from 'faker';
 import { shallowMount } from '@vue/test-utils';
 import Signup from '../../../src/components/Signup.vue';
+import flushPromises from 'flush-promises';
 import { signup } from '../../../src/api/users';
 
 jest.mock('../../../src/api/users.js');
@@ -8,12 +9,21 @@ jest.mock('../../../src/api/users.js');
 describe('Signup test suite', () => {
     let wrapper;
 
+    const $router = {
+        push: jest.fn()
+    };
+
     beforeEach(() => {
-        wrapper = shallowMount(Signup);
+        wrapper = shallowMount(Signup, {
+            mocks: {
+                $router
+            }
+        });
         jest.resetAllMocks();
     });
 
-    it('should allow the user to signup', () => {
+    it('should allow the user to signup', async () => {
+
         const user = {
             username: faker.internet.userName(),
             email: faker.internet.email(),
@@ -31,5 +41,7 @@ describe('Signup test suite', () => {
             password1: user.password,
             password2: user.password,
         });
+        await flushPromises();
+        expect($router.push).toHaveBeenCalled();
     });
 });

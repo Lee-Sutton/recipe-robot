@@ -57,13 +57,15 @@ export default {
         };
     },
     methods: {
-        handleSubmit() {
-            signup({
+        async handleSubmit() {
+            await signup({
                 username: this.username,
                 email: this.email,
                 password1: this.password1,
                 password2: this.password2,
             });
+
+            this.$router.push();
         },
     },
 };
