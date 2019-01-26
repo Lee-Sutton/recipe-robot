@@ -42,6 +42,8 @@ describe('Signup test suite', () => {
             password2: user.password,
         });
         await flushPromises();
-        expect($router.push).toHaveBeenCalled();
+
+        // The user is directed back to the home page
+        expect($router.push).toHaveBeenCalledWith('home');
     });
 });

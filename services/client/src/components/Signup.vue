@@ -65,7 +65,7 @@ export default {
                 password2: this.password2,
             });
 
-            this.$router.push();
+            this.$router.push('home');
         },
     },
 };
