@@ -1,6 +1,6 @@
 import {shallowMount, RouterLinkStub} from '@vue/test-utils';
 import Home from '@/views/Home.vue';
-import {currentUser} from '@/api/users.js';
+import {currentUser} from '../../../src/api/users.js';
 
 jest.mock('@/api/users.js');
 
