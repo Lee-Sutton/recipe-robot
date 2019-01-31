@@ -10,6 +10,11 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
+  "jest": {
+    "setupFiles": [
+      "./__setups__/localstorage.js"
+    ]
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
@@ -29,6 +34,7 @@
     "babel-jest": "^23.0.1",
     "faker": "^4.1.0",
     "flush-promises": "^1.0.2",
+    "jest-localstorage-mock": "^2.4.0",
     "jest-mock-axios": "^2.1.11",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
