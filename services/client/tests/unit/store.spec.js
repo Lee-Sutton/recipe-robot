@@ -67,11 +67,11 @@ describe('actions', () => {
         };
     });
 
-    // test('login success', async () => {
-    //     await actions.login({commit}, credentials);
-    //     expect(commit).toBeCalledWith('loginSuccess');
-    //     expect(localStorage.getItem('token')).toBeTruthy();
-    // });
+    test('login success', async () => {
+        await actions.login({commit}, loginCredentials);
+        expect(commit).toBeCalledWith('loginSuccess');
+        expect(localStorage.getItem('token')).toBeTruthy();
+    });
 
     test('signup success', async () => {
         await actions.signup({commit}, signupCredentials);
