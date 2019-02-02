@@ -75,8 +75,7 @@ describe('actions', () => {
         await flushPromises();
         expect(signup).toBeCalledWith(credentials);
         expect(commit).toBeCalledWith('signup');
-        console.log(localStorage);
-        expect(localStorage.setItem).toBeCalledWith('token', authToken.key);
+        expect(localStorage.getItem('token')).toEqual(authToken.key);
     });
 
     test('signup stores the token when successful', () => {
