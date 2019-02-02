@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {signup as userSignup} from './api/users';
 
 Vue.use(Vuex);
 
@@ -8,6 +9,9 @@ export const state = {
 };
 
 export const mutations = {
+    signup(state) {
+        state.pending = true;
+    },
     login(state) {
         state.pending = true;
     },
@@ -18,10 +22,20 @@ export const mutations = {
 };
 
 export const actions = {
-    login({commit}, credentials) {
-        console.log('running');
-        localStorage.setItem('token', 'dummyToken');
-        commit('loginSuccess');
+    // login({commit}, credentials) {
+    //     console.log('running');
+    //     localStorage.setItem('token', 'dummyToken');
+    //     commit('loginSuccess');
+    // }
+
+    /**
+     * Calls signup with the input credentials
+     * @param commit
+     * @param credentials - username, email, password1, password2
+     */
+    async signup({commit}, credentials) {
+        const result = await userSignup(credentials);
+        commit('signup');
     }
 };
 
