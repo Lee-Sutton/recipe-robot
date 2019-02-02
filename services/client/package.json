@@ -10,11 +10,6 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
-  "jest": {
-    "setupFiles": [
-      "./__setups__/localstorage.js"
-    ]
-  },
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.2",

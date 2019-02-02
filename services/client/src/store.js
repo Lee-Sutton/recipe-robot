@@ -36,6 +36,7 @@ export const actions = {
     async signup({commit}, credentials) {
         const result = await userSignup(credentials);
         commit('signup');
+        localStorage.setItem('token', result.key);
     }
 };
 

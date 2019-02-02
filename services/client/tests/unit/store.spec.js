@@ -5,6 +5,8 @@ import {signup} from '../../src/api/users';
 
 jest.mock('@/api/users.js');
 
+const authToken = {key: '12345'};
+
 beforeEach(() => {
     clearLocalStorage();
 });
@@ -43,9 +45,11 @@ describe('mutations', () => {
 
 describe('actions', () => {
     const commit = jest.fn();
+
     beforeEach(() => {
         clearLocalStorage();
         jest.resetAllMocks();
+        signup.mockResolvedValue(authToken);
     });
 
     // test('login success', async () => {
@@ -60,7 +64,6 @@ describe('actions', () => {
     // });
 
     test('signup success', async () => {
-        const commit = jest.fn();
         const credentials = {
             username: 'Lee',
             email: 'lee@e.com',
@@ -68,10 +71,12 @@ describe('actions', () => {
             password2: 'password2'
         };
 
-        actions.signup({commit}, credentials);
+        await actions.signup({commit}, credentials);
         await flushPromises();
         expect(signup).toBeCalledWith(credentials);
         expect(commit).toBeCalledWith('signup');
+        console.log(localStorage);
+        expect(localStorage.setItem).toBeCalledWith('token', authToken.key);
     });
 
     test('signup stores the token when successful', () => {
