@@ -2,9 +2,6 @@ import faker from 'faker';
 import { shallowMount } from '@vue/test-utils';
 import Signup from '../../../src/components/Signup.vue';
 import flushPromises from 'flush-promises';
-import { signup } from '../../../src/api/users';
-
-jest.mock('../../../src/api/users.js');
 
 describe('Signup test suite', () => {
     let wrapper;
@@ -13,10 +10,15 @@ describe('Signup test suite', () => {
         push: jest.fn()
     };
 
+    const $store = {
+        dispatch: jest.fn()
+    };
+
     beforeEach(() => {
         wrapper = shallowMount(Signup, {
             mocks: {
-                $router
+                $router,
+                $store,
             }
         });
         jest.resetAllMocks();
@@ -35,7 +37,8 @@ describe('Signup test suite', () => {
         wrapper.find('[data-cy=password1]').setValue(user.password);
         wrapper.find('[data-cy=password2]').setValue(user.password);
         wrapper.find('form').trigger('submit');
-        expect(signup).toHaveBeenCalledWith({
+
+        expect($store.dispatch).toHaveBeenCalledWith('signup', {
             username: user.username,
             email: user.email,
             password1: user.password,

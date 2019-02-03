@@ -58,12 +58,14 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            await signup({
+            const credentials = {
                 username: this.username,
                 email: this.email,
                 password1: this.password1,
                 password2: this.password2,
-            });
+            };
+
+            await this.$store.dispatch('signup', credentials);
 
             this.$router.push('home');
         },
