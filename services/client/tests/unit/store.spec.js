@@ -1,7 +1,7 @@
 import flushPromises from 'flush-promises';
 import {mutations, actions} from '../../src/store';
 import {clearLocalStorage} from '../utils';
-import {signup} from '../../src/api/users';
+import {signup, login} from '../../src/api/users';
 
 jest.mock('@/api/users.js');
 
@@ -18,14 +18,8 @@ describe('mutations', () => {
         state = {}
     });
 
-    test('login sets the pending state to true', () => {
-        mutations.login(state);
-        expect(state.pending).toBeTruthy();
-    });
-
     test('loginSuccess sets pending to false and isLoggedIn to true', () => {
         mutations.loginSuccess(state);
-        expect(state.pending).toBeFalsy();
         expect(state.isLoggedIn).toBeTruthy();
     });
 });
@@ -39,6 +33,7 @@ describe('actions', () => {
         clearLocalStorage();
         jest.resetAllMocks();
         signup.mockResolvedValue(authToken);
+        login.mockResolvedValue(authToken);
 
         loginCredentials = {
             username: 'Lee',
@@ -56,15 +51,17 @@ describe('actions', () => {
 
     test('login success', async () => {
         await actions.login({commit}, loginCredentials);
+        await flushPromises();
+        expect(login).toBeCalledWith(loginCredentials);
         expect(commit).toBeCalledWith('loginSuccess');
-        expect(localStorage.getItem('token')).toBeTruthy();
+        expect(localStorage.getItem('token')).toEqual(authToken.key);
     });
 
     test('signup success', async () => {
         await actions.signup({commit}, signupCredentials);
         await flushPromises();
         expect(signup).toBeCalledWith(signupCredentials);
-        expect(commit).toBeCalledWith('signup');
+        expect(commit).toBeCalledWith('loginSuccess');
         expect(localStorage.getItem('token')).toEqual(authToken.key);
     });
 });
