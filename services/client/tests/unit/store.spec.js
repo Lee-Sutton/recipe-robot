@@ -18,9 +18,10 @@ describe('mutations', () => {
         state = {}
     });
 
-    test('loginSuccess sets pending to false and isLoggedIn to true', () => {
-        mutations.loginSuccess(state);
+    test('loginSuccess', () => {
+        mutations.loginSuccess(state, authToken.key);
         expect(state.isLoggedIn).toBeTruthy();
+        expect(localStorage.getItem('token')).toEqual(authToken.key);
     });
 });
 
@@ -30,7 +31,6 @@ describe('actions', () => {
         signupCredentials;
 
     beforeEach(() => {
-        clearLocalStorage();
         jest.resetAllMocks();
         signup.mockResolvedValue(authToken);
         login.mockResolvedValue(authToken);
@@ -53,15 +53,13 @@ describe('actions', () => {
         await actions.login({commit}, loginCredentials);
         await flushPromises();
         expect(login).toBeCalledWith(loginCredentials);
-        expect(commit).toBeCalledWith('loginSuccess');
-        expect(localStorage.getItem('token')).toEqual(authToken.key);
+        expect(commit).toBeCalledWith('loginSuccess', authToken.key);
     });
 
     test('signup success', async () => {
         await actions.signup({commit}, signupCredentials);
         await flushPromises();
         expect(signup).toBeCalledWith(signupCredentials);
-        expect(commit).toBeCalledWith('loginSuccess');
-        expect(localStorage.getItem('token')).toEqual(authToken.key);
+        expect(commit).toBeCalledWith('loginSuccess', authToken.key);
     });
 });

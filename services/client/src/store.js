@@ -9,8 +9,13 @@ export const state = {
 };
 
 export const mutations = {
-    loginSuccess(state) {
+    /**
+     * To be called after a successful login attempt
+     * @param token (Payload) - auth token returned by the api
+     */
+    loginSuccess(state, token) {
         state.isLoggedIn = true;
+        localStorage.setItem('token', token);
     }
 };
 
@@ -24,8 +29,7 @@ export const actions = {
      */
     async login({commit}, credentials) {
         const result = await userLogin(credentials);
-        commit('loginSuccess');
-        localStorage.setItem('token', result.key);
+        commit('loginSuccess', result.key);
     },
 
     /**
@@ -35,8 +39,7 @@ export const actions = {
      */
     async signup({commit}, credentials) {
         const result = await userSignup(credentials);
-        commit('loginSuccess');
-        localStorage.setItem('token', result.key);
+        commit('loginSuccess', result.key);
     }
 };
 
