@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises';
-import {state, mutations, actions} from '../../src/store';
+import {mutations, actions} from '../../src/store';
 import {clearLocalStorage} from '../utils';
 import {signup} from '../../src/api/users';
 
@@ -10,19 +10,6 @@ const authToken = {key: '12345'};
 beforeEach(() => {
     clearLocalStorage();
 });
-
-// describe('state', () => {
-//     test('isLoggedIn returns true when an auth token is present', () => {
-//         localStorage.setItem('token', true);
-//         console.log(localStorage);
-//         console.log(state);
-//         expect(state.isLoggedIn).toBeTruthy();
-//     });
-//
-//     test('isLoggedIn returns false when a user is not logged in', () => {
-//         expect(state.isLoggedIn).toBeFalsy();
-//     });
-// });
 
 describe('mutations', () => {
     let state;

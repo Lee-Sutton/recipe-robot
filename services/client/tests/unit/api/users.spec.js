@@ -1,4 +1,4 @@
-import {signup, HOST_URL} from "../../../src/api/users";
+import {signup, login, HOST_URL} from "../../../src/api/users";
 import mockAxios from 'jest-mock-axios';
 import faker from 'faker';
 
@@ -11,7 +11,12 @@ afterEach(() => {
     mockAxios.reset();
 });
 
-test('it should send a post request with the user data', () => {
+test('signup', () => {
     signup(user);
     expect(mockAxios.post).toHaveBeenCalledWith(`${HOST_URL}/api/v1/rest-auth/registration/`, user);
+});
+
+test('login', () => {
+    login(user);
+    expect(mockAxios.post).toHaveBeenCalledWith(`${HOST_URL}/api/v1/rest-auth/login/`, user)
 });

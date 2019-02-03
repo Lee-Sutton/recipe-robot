@@ -11,8 +11,11 @@ export const signup = async (user) => {
     return axios.post(`${HOST_URL}/api/v1/rest-auth/registration/`, user);
 };
 
-// FIXME this should come from the store
-// FIXME do I need async here
-export const currentUser = async () => {
-    return axios.get(`${HOST_URL}/api/v1/user/`);
+/**
+ * Login for the input user
+ * @param user = {username, email, password}
+ * @returns {Promise<AxiosPromise<any>>}
+ */
+export const login = async (user) => {
+    return axios.post(`${HOST_URL}/api/v1/rest-auth/login/`, user);
 };

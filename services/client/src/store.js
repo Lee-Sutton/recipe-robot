@@ -22,14 +22,20 @@ export const mutations = {
 };
 
 export const actions = {
-    // login({commit}, credentials) {
-    //     console.log('running');
-    //     localStorage.setItem('token', 'dummyToken');
-    //     commit('loginSuccess');
-    // }
 
     /**
-     * Calls signup with the input credentials
+     * Calls API login with the input credentials
+     * @param commit
+     * @param credentials
+     * @returns {Promise<void>}
+     */
+    async login({commit}, credentials) {
+        localStorage.setItem('token', 'dummyToken');
+        commit('loginSuccess');
+    },
+
+    /**
+     * Calls API signup with the input credentials
      * @param commit
      * @param credentials - username, email, password1, password2
      */
