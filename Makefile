@@ -10,5 +10,8 @@ deploy-local:
 build-dev:
 	docker-compose up --build
 
+test:
+	docker-compose up --build -d && docker-compose run web make test && docker-compose down
+
 dev:
 	docker-compose up

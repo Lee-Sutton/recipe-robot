@@ -12,6 +12,7 @@ django-rest-auth = "*"
 "psycopg2" = "*"
 django-allauth = "*"
 factory-boy = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 pytest = "*"
