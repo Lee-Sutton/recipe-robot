@@ -4,7 +4,8 @@ from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
 
 
-def create_user(username, email, password):
+def create_user(username='test_user', email='test_user@e.com',
+                password='secret'):
     """Creates a user for testing purposes"""
     user = User(username=username, email=email)
     user.set_password(password)
@@ -17,7 +18,7 @@ class TestRecipeViews(APITestCase):
 
     def test_recipe_list(self):
         """it should return a list of recipes in the database"""
-        user = create_user('lee', 'lee@e.com', 'secret')
+        user = create_user()
         self.client.force_authenticate(user)
         response = self.client.get('/api/v1/', format='json')
         assert response.status_code == status.HTTP_200_OK
@@ -29,6 +30,19 @@ class TestRecipeViews(APITestCase):
         """
         response = self.client.get('/api/v1/', format='json')
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+
+class TestIntegrationViews(APITestCase):
+    """Integration testing end points"""
+
+    def setUp(self):
+        self.user = create_user()
+
+    def test_reset_database(self):
+        """It should remove all user created data from the database"""
+        response = self.client.delete('/api/v1/integration/reset')
+
+        assert response.status_code == status.HTTP_200_OK
 
 
 class TestRestAuthViews(APITestCase):
