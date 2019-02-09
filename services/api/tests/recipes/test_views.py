@@ -2,6 +2,8 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
+from recipes.factories import IngredientFactory, RecipeFactory
+from recipes.models import Ingredient, Recipe
 
 
 def create_user(username='test_user', email='test_user@e.com',
@@ -37,12 +39,23 @@ class TestIntegrationViews(APITestCase):
 
     def setUp(self):
         self.user = create_user()
+        RecipeFactory()
+        IngredientFactory()
 
     def test_reset_database(self):
         """It should remove all user created data from the database"""
+        self.client.force_authenticate(self.user)
         response = self.client.delete('/api/v1/integration/reset')
-
         assert response.status_code == status.HTTP_200_OK
+        assert len(Recipe.objects.all()) == 0
+        assert len(Ingredient.objects.all()) == 0
+        assert len(User.objects.all()) == 0
+
+    # def test_login_is_required(self):
+    #     response = self.client.delete('/api/v1/integration/reset')
+    #     assert response.status_code == status.HTTP_401_UNAUTHORIZED
+    #     assert len(Recipe.objects.all())
+    #     assert len(Ingredient.objects.all())
 
 
 class TestRestAuthViews(APITestCase):

@@ -1,7 +1,8 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Recipe
+from .models import Recipe, Ingredient
+from django.contrib.auth.models import User
 from .serializers import RecipeSerializer
 
 
@@ -12,7 +13,9 @@ class IntegrationView(APIView):
     """
 
     def delete(self, request, format=None):
-        print('this was called')
+        models = [Ingredient, Recipe, User]
+        for model in models:
+            model.objects.all().delete()
         return Response()
 
 
