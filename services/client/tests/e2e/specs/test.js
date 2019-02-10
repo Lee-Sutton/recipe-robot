@@ -1,5 +1,6 @@
 describe('App layout specs', () => {
     beforeEach(() => {
+        cy.resetDb();
         cy.visit('/');
     });
 

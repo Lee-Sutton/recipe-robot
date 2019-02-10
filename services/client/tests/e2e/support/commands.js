@@ -23,3 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+const SERVER_URL = 'http://localhost:8000';
+
+Cypress.Commands.add('resetDb', () => {
+    cy.request('DELETE', `${SERVER_URL}/api/v1/integration/reset`);
+});
